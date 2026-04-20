@@ -172,16 +172,36 @@
     }
   }
 
-  // Controls row - repaint buttons so they feel in-theme but stay legible
+  // Controls row - icon-only buttons with trainer-card styling
   .usercard-controls {
     .btn {
       border: 2px solid var(--tc-ink);
       border-radius: 999px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
       background: #fff;
       color: var(--tc-ink);
+      width: 2.4em;
+      height: 2.4em;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      // Hide text but keep it accessible to screen readers
+      .d-button-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .d-icon {
+        margin: 0;
+      }
 
       &.btn-primary {
         background: var(--tc-primary);
