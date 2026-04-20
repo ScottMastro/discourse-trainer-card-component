@@ -1,25 +1,28 @@
 // Pokemon-style trainer card user card
 // Restyles the Discourse user-card popup to look like a Gen-1/2 trainer card.
 
-$trainer-primary: $primary_color;
-$trainer-bg: $background_color;
-$trainer-stripe: $stripe_color;
-$trainer-ink: #202020;
-
 #user-card.user-card {
-  border: 4px solid $trainer-primary;
+  --tc-primary: #{$primary_color};
+  --tc-bg: #{$background_color};
+  --tc-stripe: #{$stripe_color};
+  --tc-ink: #202020;
+  --tc-primary-dark: color-mix(in srgb, var(--tc-primary) 88%, black);
+  --tc-primary-darker: color-mix(in srgb, var(--tc-primary) 78%, black);
+  --tc-primary-light: color-mix(in srgb, var(--tc-primary) 92%, white);
+
+  border: 4px solid var(--tc-primary);
   border-radius: 14px;
   padding: 0;
   overflow: hidden;
   background: repeating-linear-gradient(
     45deg,
-    $trainer-bg 0 18px,
-    $trainer-stripe 18px 36px
+    var(--tc-bg) 0 18px,
+    var(--tc-stripe) 18px 36px
   );
   box-shadow:
-    0 0 0 2px darken($trainer-primary, 12%),
+    0 0 0 2px var(--tc-primary-dark),
     0 10px 28px rgba(0, 0, 0, 0.35);
-  color: $trainer-ink;
+  color: var(--tc-ink);
   font-family: "Trebuchet MS", "Segoe UI", sans-serif;
 
   // Header bar with setting-driven text
@@ -28,9 +31,9 @@ $trainer-ink: #202020;
     display: block;
     background: linear-gradient(
       180deg,
-      lighten($trainer-primary, 8%) 0%,
-      $trainer-primary 60%,
-      darken($trainer-primary, 10%) 100%
+      var(--tc-primary-light) 0%,
+      var(--tc-primary) 60%,
+      var(--tc-primary-darker) 100%
     );
     color: #fff;
     font-weight: 800;
@@ -40,7 +43,7 @@ $trainer-ink: #202020;
     padding: 0.5em 0;
     font-size: 0.95em;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
-    border-bottom: 3px solid darken($trainer-primary, 18%);
+    border-bottom: 3px solid var(--tc-primary-darker);
   }
 
   .card-content {
@@ -53,10 +56,10 @@ $trainer-ink: #202020;
       display: inline-block;
       padding: 4px;
       background: #fff;
-      border: 3px solid $trainer-ink;
+      border: 3px solid var(--tc-ink);
       border-radius: 6px;
       box-shadow:
-        inset 0 0 0 2px $trainer-primary,
+        inset 0 0 0 2px var(--tc-primary),
         2px 2px 0 rgba(0, 0, 0, 0.25);
 
       img.avatar {
@@ -70,13 +73,13 @@ $trainer-ink: #202020;
   .names {
     &__primary {
       font-weight: 800;
-      color: $trainer-ink;
+      color: var(--tc-ink);
       text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
       font-size: 1.25em;
     }
 
     &__secondary {
-      color: rgba($trainer-ink, 0.75);
+      color: color-mix(in srgb, var(--tc-ink) 75%, transparent);
       font-style: normal;
     }
   }
@@ -84,20 +87,20 @@ $trainer-ink: #202020;
   // Bio panel - treat like the card's memo area
   .bio {
     background: rgba(255, 255, 255, 0.85);
-    border: 2px solid $trainer-ink;
+    border: 2px solid var(--tc-ink);
     border-radius: 6px;
     padding: 0.6em 0.8em;
-    color: $trainer-ink;
+    color: var(--tc-ink);
 
     a {
-      color: darken($trainer-primary, 8%);
+      color: var(--tc-primary-dark);
     }
   }
 
   // Stats rows (joined / last post / time read)
   .metadata-row .metadata {
     background: rgba(255, 255, 255, 0.85);
-    border: 2px solid $trainer-ink;
+    border: 2px solid var(--tc-ink);
     border-radius: 6px;
     padding: 0.5em 0.75em;
     display: grid;
@@ -105,11 +108,11 @@ $trainer-ink: #202020;
     gap: 0.25em 1em;
 
     > div {
-      color: $trainer-ink;
+      color: var(--tc-ink);
       font-variant-numeric: tabular-nums;
 
       .desc {
-        color: darken($trainer-primary, 10%);
+        color: var(--tc-primary-dark);
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.06em;
@@ -120,17 +123,17 @@ $trainer-ink: #202020;
 
   // Location / website line
   .location-and-website {
-    color: rgba($trainer-ink, 0.85);
+    color: color-mix(in srgb, var(--tc-ink) 85%, transparent);
 
     a {
-      color: darken($trainer-primary, 10%);
+      color: var(--tc-primary-dark);
     }
   }
 
   // Badge shelf - gym badges
   .badge-section {
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid $trainer-ink;
+    border: 2px solid var(--tc-ink);
     border-radius: 6px;
     padding: 0.6em;
     display: flex;
@@ -139,20 +142,20 @@ $trainer-ink: #202020;
     justify-content: flex-start;
 
     .user-badge {
-      background: $trainer-bg;
-      border: 2px solid $trainer-primary;
+      background: var(--tc-bg);
+      border: 2px solid var(--tc-primary);
       border-radius: 999px;
       padding: 0.15em 0.6em;
-      color: $trainer-ink;
+      color: var(--tc-ink);
       box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 
       &:hover {
-        background: lighten($trainer-bg, 6%);
+        background: color-mix(in srgb, var(--tc-bg) 94%, white);
       }
     }
 
     .more-user-badges a {
-      color: darken($trainer-primary, 10%);
+      color: var(--tc-primary-dark);
       font-weight: 700;
     }
   }
@@ -160,27 +163,27 @@ $trainer-ink: #202020;
   // Controls row - repaint buttons so they feel in-theme but stay legible
   .usercard-controls {
     .btn {
-      border: 2px solid $trainer-ink;
+      border: 2px solid var(--tc-ink);
       border-radius: 999px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       background: #fff;
-      color: $trainer-ink;
+      color: var(--tc-ink);
 
       &.btn-primary {
-        background: $trainer-primary;
+        background: var(--tc-primary);
         color: #fff;
 
         &:hover,
         &:focus {
-          background: darken($trainer-primary, 8%);
+          background: var(--tc-primary-dark);
         }
       }
 
       &:hover,
       &:focus {
-        background: $trainer-stripe;
+        background: var(--tc-stripe);
       }
     }
   }
@@ -189,23 +192,23 @@ $trainer-ink: #202020;
   .suspended,
   .silenced {
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid $trainer-ink;
+    border: 2px solid var(--tc-ink);
     border-radius: 6px;
     padding: 0.6em 0.8em;
-    color: $trainer-ink;
+    color: var(--tc-ink);
   }
 
   // Featured topic line
   .featured-topic {
-    color: $trainer-ink;
+    color: var(--tc-ink);
 
     .desc {
-      color: darken($trainer-primary, 10%);
+      color: var(--tc-primary-dark);
       font-weight: 700;
     }
 
     a {
-      color: darken($trainer-primary, 12%);
+      color: var(--tc-primary-darker);
       font-weight: 700;
     }
   }
@@ -213,11 +216,10 @@ $trainer-ink: #202020;
   // Public user fields
   .public-user-fields {
     .user-field-name {
-      color: darken($trainer-primary, 10%);
+      color: var(--tc-primary-dark);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
   }
 }
-
