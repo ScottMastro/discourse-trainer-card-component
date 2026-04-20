@@ -1,0 +1,223 @@
+// Pokemon-style trainer card user card
+// Restyles the Discourse user-card popup to look like a Gen-1/2 trainer card.
+
+$trainer-primary: $primary_color;
+$trainer-bg: $background_color;
+$trainer-stripe: $stripe_color;
+$trainer-ink: #202020;
+
+#user-card.user-card {
+  border: 4px solid $trainer-primary;
+  border-radius: 14px;
+  padding: 0;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    45deg,
+    $trainer-bg 0 18px,
+    $trainer-stripe 18px 36px
+  );
+  box-shadow:
+    0 0 0 2px darken($trainer-primary, 12%),
+    0 10px 28px rgba(0, 0, 0, 0.35);
+  color: $trainer-ink;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+
+  // Header bar with setting-driven text
+  &::before {
+    content: "#{$header_text}";
+    display: block;
+    background: linear-gradient(
+      180deg,
+      lighten($trainer-primary, 8%) 0%,
+      $trainer-primary 60%,
+      darken($trainer-primary, 10%) 100%
+    );
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0.5em 0;
+    font-size: 0.95em;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+    border-bottom: 3px solid darken($trainer-primary, 18%);
+  }
+
+  .card-content {
+    padding: 0.75em 1em 1em;
+  }
+
+  // Portrait framing for the avatar
+  .user-card-avatar {
+    .card-huge-avatar {
+      display: inline-block;
+      padding: 4px;
+      background: #fff;
+      border: 3px solid $trainer-ink;
+      border-radius: 6px;
+      box-shadow:
+        inset 0 0 0 2px $trainer-primary,
+        2px 2px 0 rgba(0, 0, 0, 0.25);
+
+      img.avatar {
+        border-radius: 2px;
+        display: block;
+      }
+    }
+  }
+
+  // Name and title
+  .names {
+    &__primary {
+      font-weight: 800;
+      color: $trainer-ink;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+      font-size: 1.25em;
+    }
+
+    &__secondary {
+      color: rgba($trainer-ink, 0.75);
+      font-style: normal;
+    }
+  }
+
+  // Bio panel - treat like the card's memo area
+  .bio {
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid $trainer-ink;
+    border-radius: 6px;
+    padding: 0.6em 0.8em;
+    color: $trainer-ink;
+
+    a {
+      color: darken($trainer-primary, 8%);
+    }
+  }
+
+  // Stats rows (joined / last post / time read)
+  .metadata-row .metadata {
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid $trainer-ink;
+    border-radius: 6px;
+    padding: 0.5em 0.75em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25em 1em;
+
+    > div {
+      color: $trainer-ink;
+      font-variant-numeric: tabular-nums;
+
+      .desc {
+        color: darken($trainer-primary, 10%);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-right: 0.35em;
+      }
+    }
+  }
+
+  // Location / website line
+  .location-and-website {
+    color: rgba($trainer-ink, 0.85);
+
+    a {
+      color: darken($trainer-primary, 10%);
+    }
+  }
+
+  // Badge shelf - gym badges
+  .badge-section {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid $trainer-ink;
+    border-radius: 6px;
+    padding: 0.6em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    justify-content: flex-start;
+
+    .user-badge {
+      background: $trainer-bg;
+      border: 2px solid $trainer-primary;
+      border-radius: 999px;
+      padding: 0.15em 0.6em;
+      color: $trainer-ink;
+      box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background: lighten($trainer-bg, 6%);
+      }
+    }
+
+    .more-user-badges a {
+      color: darken($trainer-primary, 10%);
+      font-weight: 700;
+    }
+  }
+
+  // Controls row - repaint buttons so they feel in-theme but stay legible
+  .usercard-controls {
+    .btn {
+      border: 2px solid $trainer-ink;
+      border-radius: 999px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: #fff;
+      color: $trainer-ink;
+
+      &.btn-primary {
+        background: $trainer-primary;
+        color: #fff;
+
+        &:hover,
+        &:focus {
+          background: darken($trainer-primary, 8%);
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background: $trainer-stripe;
+      }
+    }
+  }
+
+  // Suspended / silenced panels - keep readable against the yellow
+  .suspended,
+  .silenced {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid $trainer-ink;
+    border-radius: 6px;
+    padding: 0.6em 0.8em;
+    color: $trainer-ink;
+  }
+
+  // Featured topic line
+  .featured-topic {
+    color: $trainer-ink;
+
+    .desc {
+      color: darken($trainer-primary, 10%);
+      font-weight: 700;
+    }
+
+    a {
+      color: darken($trainer-primary, 12%);
+      font-weight: 700;
+    }
+  }
+
+  // Public user fields
+  .public-user-fields {
+    .user-field-name {
+      color: darken($trainer-primary, 10%);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+  }
+}
+

@@ -1,0 +1,8 @@
+{
+  "name": "Discourse Trainer Card Component",
+  "about_url": "https://github.com/ScottMastro/discourse-trainer-card-component",
+  "license_url": "https://github.com/ScottMastro/discourse-trainer-card-component/blob/main/LICENSE",
+  "component": true,
+  "authors": "ScottMastro",
+  "theme_version": "0.1.0"
+}

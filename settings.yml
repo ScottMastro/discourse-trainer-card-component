@@ -1,0 +1,19 @@
+header_text:
+  default: "TRAINER CARD"
+  type: string
+  description: "Text shown at the top of the user card."
+
+primary_color:
+  default: "#e03c28"
+  type: string
+  description: "Main accent color (border & header)."
+
+background_color:
+  default: "#f7d154"
+  type: string
+  description: "Background color of the card body."
+
+stripe_color:
+  default: "#ffe88a"
+  type: string
+  description: "Secondary stripe color for the card body."
