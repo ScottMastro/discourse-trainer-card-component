@@ -17,3 +17,8 @@ stripe_color:
   default: "#ffe88a"
   type: string
   description: "Secondary stripe color for the card body."
+
+rank_names:
+  default: "Rookie|Trainer|Veteran Trainer|Ace Trainer|Champion"
+  type: list
+  description: "Rank shown on the card by trust level (TL0 through TL4)."
